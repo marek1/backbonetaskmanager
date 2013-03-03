@@ -1,0 +1,142 @@
+@green:				#22CF01;
+@yellow:       		#B3E100;
+@red:				#CF1101;
+@blue:				#005FFF;
+@grey: 				#E5E5E5;
+@darkgrey:		darken(@grey, 20%);
+@margin:			2%;
+@padding: 			@margin;
+@smallfont:		10px;
+@mediumfont: 	(@smallfont*1.5);
+@bigfont:			(@smallfont*3);
+@hugefont:			(@smallfont*5);
+@fontcolor:		@darkgrey;
+@quadratwidth:	10%;
+
+.quadrat (@length,@radius) {
+  width: @length;
+  border-radius: @radius;
+  -moz-border-radius: @radius;
+  -webkit-border-radius: @radius;
+}
+body{
+	font-size: @smallfont;
+	color: @darkgrey;
+}
+nav, header, footer, section, article {
+	display: block;
+}
+#fade{
+	display: none;  
+    position: absolute;  
+    left: 0%; 
+    top: 0%; 
+    background-color: black;
+    -moz-opacity: 0.9;
+    opacity: .90;
+    filter: alpha(opacity=90);
+    width: 100%;
+    height: 100%;
+    z-index: 90; 
+	}
+#dialog{
+	display: none;
+	left:5%;
+	top:5%;
+	width: 76%;
+	position: absolute; 
+	margin:@margin;
+	padding: @padding; 
+	z-index: 100;
+	border:2px solid white;
+}	
+#dialog-close{
+	position:absolute;
+	top:0;
+	right:0;
+	margin-top:-10px;
+	margin-right:-10px;
+	cursor:pointer;
+}	
+#add-task-text,
+#edit-task-text{
+	width:100%;
+}
+.show-task,
+#add-task{
+	float:left;
+	color:white;
+	.quadrat(96%,10px);
+	height:auto;
+	margin : 0 @margin @margin 0;
+	padding : @padding;
+	cursor: pointer;
+}
+.show-task-1{
+background-color: @green;
+}
+.show-task-2{
+background-color: @yellow;
+}
+.show-task-3{
+background-color: @red;
+}
+.right{
+	float:right;
+}
+.left{
+	float:left;
+}
+#add-task{
+	text-align:center;
+	font-size:@hugefont;
+	background-color: @grey;
+}
+.open{
+	height:auto;
+	min-height:100px;
+}
+.icon{
+	width:20px;
+	height:20px;
+}
+.edit,
+.delete
+{
+	display:none;
+	float:right;
+	margin-top:-15px;
+	z-index:2000;
+}
+.show-task:hover{
+	button{
+		display:block;
+	}
+}
+@media only screen and (min-width : 768px) { 
+	body{
+		font-size: @mediumfont;
+	}
+	.show-task,#add-task{
+		.quadrat(44%,10px); 
+	}
+	#dialog{
+		top:15%;
+		left: 15%;
+		width: 66%;
+    }
+}
+@media only screen and (min-width : 1024px) { 
+	body{
+	font-size: @bigfont;
+	}
+	.show-task,#add-task{
+		.quadrat(27%,10px); 
+	}
+	#dialog{
+		left: 25%;
+		top: 25%;
+		width: 46%;
+		
+    }
+}
