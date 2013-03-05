@@ -8,6 +8,7 @@ define(['jquery','backbone'], function($, Backbone){
 			var template = _.template( $("#task_template").html(), variables );
 			
 			$(this.el).addClass('show-task').html(template);
+			$(this.el).css("height","100%");
 			
             if (this.model.get('prio')=="1"){
 				$(this.el).addClass('show-task-1');
@@ -26,7 +27,8 @@ define(['jquery','backbone'], function($, Backbone){
             "click" : "showEntry",
 			"click .edit": "editEntry",
 			"click #edit-task-button": "submitEditEntry",
-			"keyup #edit-task-text": "enlargeTextarea"
+			"keyup #edit-task-text": "enlargeTextarea",
+			"click .cancel_button": "cancelEdit"
         },
 		
 		//delete a contact
@@ -51,7 +53,6 @@ define(['jquery','backbone'], function($, Backbone){
 			
 		editEntry: function(){
 				
-			//TEMPLATES !!!
 			var variables = { "title" : this.model.get('title'), "prio": this.model.get('prio') };
 			var template = _.template( $("#task_edit_template").html(), variables );
 			$(this.el).html(template);
@@ -65,8 +66,14 @@ define(['jquery','backbone'], function($, Backbone){
 			this.render();
 		},
 		
+		cancelEdit: function(){
+			
+			this.render();
+			
+		},
+		
 		enlargeTextarea: function(){
-			$('#edit-task-text').bind('keyup change', function() {
+			$('#edit-task-text').bind('input keyup change', function() {
 				var $this = $(this), $offset = this.offsetHeight;
 				console.log($this);
 				$offset > $this.height() ?
@@ -75,7 +82,7 @@ define(['jquery','backbone'], function($, Backbone){
 					.css({'height' : $this.attr('scrollHeight'),'overflow' : 'hidden'}) :
 				$this.css('overflow','auto');
 				$(this).closest('div').css('height', $offset+20+"px");
-				
+
 			});
 		},
 		
