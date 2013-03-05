@@ -28,9 +28,7 @@ define(['jquery', 'backbone','collections/tasks', 'models/task', 'views/taskview
             "click #search-task-button" : "searchTasks"
 		},
 		setFilter: function(e){
-			
 			var filterType = e.currentTarget.value;
-			console.log(filterType);
 			this.collection.fetch();
 			if (filterType == "0") {
 				var filtered = _.filter(this.collection.models, function (item) {
@@ -47,8 +45,14 @@ define(['jquery', 'backbone','collections/tasks', 'models/task', 'views/taskview
         },
         searchTasks: function(){
 			var searchText = $('#search-task-text').val();
-			var results = this.collection.where({title: searchText});
-			alert(results);
+			this.collection.fetch();
+			var pattern = new RegExp(searchText,"gi");
+			var filtered = _.filter(this.collection.models, function (item) {
+				//return item.get("title") == searchText;
+				return pattern.test(item.get("title"));
+			});
+			this.collection.reset(filtered,{ silent: true });
+			this.render();
 		}
         
 		
