@@ -8,7 +8,7 @@ define(['jquery','backbone'], function($, Backbone){
 			var template = _.template( $("#task_template").html(), variables );
 			
 			$(this.el).addClass('show-task').html(template);
-			$(this.el).css("height","100%");
+			$(this.el).css("height","auto");
 			
             if (this.model.get('prio')=="1"){
 				$(this.el).addClass('show-task-1');
@@ -19,6 +19,9 @@ define(['jquery','backbone'], function($, Backbone){
 			if (this.model.get('prio')=="3"){
 				$(this.el).addClass('show-task-3');
 			}
+			
+			this.freetile();
+			
 			return this;
         },
         
@@ -55,7 +58,7 @@ define(['jquery','backbone'], function($, Backbone){
 			var variables = { "title" : this.model.get('title'), "prio": this.model.get('prio') };
 			var template = _.template( $("#task_edit_template").html(), variables );
 			$(this.el).html(template);
-			
+			this.freetile();
 		},
 		
 		submitEditEntry: function(){
@@ -66,9 +69,7 @@ define(['jquery','backbone'], function($, Backbone){
 		},
 		
 		cancelEdit: function(){
-			
 			this.render();
-			
 		},
 		
 		enlargeTextarea: function(){
@@ -80,8 +81,8 @@ define(['jquery','backbone'], function($, Backbone){
 					.attr('rows', $this.val().split('\n').length+1)
 					.css({'height' : $this.attr('scrollHeight'),'overflow' : 'hidden'}) :
 				$this.css('overflow','auto');
-				$(this).closest('div').css('height', $offset+20+"px");
-
+				$(this).closest('div').css('height', $offset+80+"px");
+				this.freetile();
 			});
 		},
 		
@@ -98,6 +99,9 @@ define(['jquery','backbone'], function($, Backbone){
 				this.model.save({prio:1});
 			}
 			this.render();
+		},
+		freetile : function(){
+			$("#container").freetile();
 		}
     });
     return taskView;

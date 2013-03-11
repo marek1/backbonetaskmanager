@@ -1,4 +1,4 @@
-define(['backbone','views/tasksview', 'views/dialogview'],function(Backbone, TasksView, DialogView){
+define(['backbone','freetile','views/tasksview', 'views/dialogview'],function(Backbone, Freetile, TasksView, DialogView){
       
     var homeRouter = Backbone.Router.extend({
         initialize: function(){

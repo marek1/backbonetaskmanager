@@ -20,11 +20,18 @@
   -webkit-border-radius: @radius;
 }
 body{
-	font-size: @smallfont;
+	font-size: @mediumfont;
 	color: @darkgrey;
 }
 nav, header, footer, section, article {
 	display: block;
+}
+section{
+	padding:1%;
+	min-height:50px;
+}
+.filters{
+	margin-bottom:10px;
 }
 #add-task-text,
 #edit-task-text{
@@ -34,7 +41,7 @@ nav, header, footer, section, article {
 #add-task{
 	float:left;
 	color:white;
-	.quadrat(96%,10px);
+	.quadrat(94%,10px);
 	height:auto;
 	margin : 0 @margin @margin 0;
 	padding : @padding;
@@ -62,7 +69,6 @@ background-color: @red;
 }
 .open{
 	height:auto;
-	min-height:100px;
 }
 .icon{
 	width:20px;
@@ -87,11 +93,8 @@ background-color: @red;
 	color:@blue;
 }
 @media only screen and (min-width : 768px) { 
-	body{
-		font-size: @mediumfont;
-	}
 	.show-task,#add-task{
-		.quadrat(44%,10px); 
+		.quadrat(42%,10px); 
 	}
 	#dialog{
 		top:15%;
@@ -100,9 +103,6 @@ background-color: @red;
     }
 }
 @media only screen and (min-width : 1024px) { 
-	body{
-	font-size: @bigfont;
-	}
 	.show-task,#add-task{
 		.quadrat(27%,10px); 
 	}
@@ -110,6 +110,5 @@ background-color: @red;
 		left: 25%;
 		top: 25%;
 		width: 46%;
-		
     }
 }

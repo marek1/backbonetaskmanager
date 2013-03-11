@@ -1,10 +1,9 @@
-define(['jquery', 'bootstrap', 'backbone','collections/tasks', 'models/task', 'views/taskview'], function($, Bootstrap, Backbone, Tasks, Task, TaskView){
+define(['jquery', 'freetile', 'bootstrap', 'backbone','collections/tasks', 'models/task', 'views/taskview'], function($, Freetile, Bootstrap, Backbone, Tasks, Task, TaskView){
 
     
     var dialogView = Backbone.View.extend({
 		el: 'body',
 		initialize: function () {	
-			//_.bindAll(this, 'render', 'renderTask', 'addTask', 'showDialog', 'closeDialog', 'removeTextareaBorder', 'cleanTextarea', 'resizeTextarea');
 			this.collection = new Tasks();
 		},
 		render: function () {
@@ -15,6 +14,7 @@ define(['jquery', 'bootstrap', 'backbone','collections/tasks', 'models/task', 'v
                 model: item
             });
             $("#container").append(this.TaskView.render().el);
+            this.freetile();
         },
 		events:{
 			'click #add-task' : 'showDialog',
@@ -34,12 +34,12 @@ define(['jquery', 'bootstrap', 'backbone','collections/tasks', 'models/task', 'v
 			}
 		},
 		showDialog: function () {
-			//$("#dialog,#fade").show();
 			$("#modal1").modal('show');
+			this.freetile();
 			$('#add-task-text').on('keydown',function(){
 				$('textarea').css('border','none');
 			});
-			$('#add-task-text').bind('keyup change', function() {
+			$('#add-task-text').on('keyup change', function() {
 				var $this = $(this), $offset = this.offsetHeight;
 				$offset > $this.height() && $offset < 300 ?
 					$this.css('height ', $offset)
@@ -49,10 +49,10 @@ define(['jquery', 'bootstrap', 'backbone','collections/tasks', 'models/task', 'v
 			});
 		},
 		closeDialog: function () {
-			//$("#dialog,#fade").hide();
 			$("#modal1").modal('hide');
 			this.removeTextareaBorder();
 			this.cleanTextarea();
+			this.freetile();
 		},
 		removeTextareaBorder: function(){
 			$('textarea').css('border','none');
@@ -60,17 +60,9 @@ define(['jquery', 'bootstrap', 'backbone','collections/tasks', 'models/task', 'v
 		cleanTextarea: function(){
 			$('textarea').val('');
 		},
-		resizeTextarea: function() {
-			$('textarea').each(function(i, t){
-				var m = 0;
-				$($(t).val().split("\n")).each(function(i, s){
-				  m += (s.length/(t.offsetWidth/10)) + 1;
-				});
-				t.style.height = Math.floor(m + 8) + 'em';
-			});
+		freetile : function(){
+			$("#container").freetile();
 		}
-
-		
 	 });
 	 return dialogView;
 });

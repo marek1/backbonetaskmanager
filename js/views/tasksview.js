@@ -1,4 +1,4 @@
-define(['jquery', 'backbone','collections/tasks', 'models/task', 'views/taskview'], function($, Backbone, Tasks, Task, TaskView){
+define(['jquery', 'freetile', 'backbone','collections/tasks', 'models/task', 'views/taskview'], function($, Freetile, Backbone, Tasks, Task, TaskView){
 
     
     var tasksView = Backbone.View.extend({
@@ -16,12 +16,14 @@ define(['jquery', 'backbone','collections/tasks', 'models/task', 'views/taskview
 			_.each(this.collection.models, function (item) {
 					that.renderTask(item);
 			}, this);
+			this.addTask();
 		},
 		renderTask: function (item) {
 			this.TaskView = new TaskView({
                 model: item
             });
             $("#container").append(this.TaskView.render().el);
+			this.freetile();
         },
         events: {
             "change #filtertype": "setFilter",
@@ -45,6 +47,7 @@ define(['jquery', 'backbone','collections/tasks', 'models/task', 'views/taskview
         },
         searchTasks: function(){
 			var searchText = $('#search-task-text').val();
+			$('#search-task-text').val('');
 			this.collection.fetch();
 			var pattern = new RegExp(searchText,"gi");
 			var filtered = _.filter(this.collection.models, function (item) {
@@ -53,6 +56,13 @@ define(['jquery', 'backbone','collections/tasks', 'models/task', 'views/taskview
 			});
 			this.collection.reset(filtered,{ silent: true });
 			this.render();
+		},
+		addTask: function(){
+			$("#container").append("<div class='show-task' id='add-task'>+</div>");
+			this.freetile();
+		},
+		freetile : function(){
+			$("#container").freetile();
 		}
         
 		

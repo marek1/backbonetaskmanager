@@ -4,7 +4,8 @@ require.config({
 	underscore: 'libs/underscore/underscore-min',
 	backbone: 'libs/backbone/backbone-min',
 	'backbone.localStorage': 'libs/localstorage/backbone-localstorage-min',
-	'bootstrap': 'libs/bootstrap/bootstrap.min'
+	'bootstrap': 'libs/bootstrap/bootstrap.min',
+	'freetile': 'libs/freetile/jquery.freetile.min'
 	},
 	shim: {
 		underscore: {
@@ -18,7 +19,8 @@ require.config({
 		  deps: ['backbone'],
 		  exports: 'Backbone'
 		},
-		 "bootstrap": ['jquery']
+		 "bootstrap": ['jquery'],
+		 "freetile": ['jquery']
 	}
 });
 require([
