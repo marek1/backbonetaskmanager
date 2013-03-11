@@ -3,7 +3,8 @@ require.config({
 	jquery: 'libs/jquery/jquery-1.7.1.min',
 	underscore: 'libs/underscore/underscore-min',
 	backbone: 'libs/backbone/backbone-min',
-	'backbone.localStorage': 'libs/localstorage/backbone-localstorage-min'
+	'backbone.localStorage': 'libs/localstorage/backbone-localstorage-min',
+	'bootstrap': 'libs/bootstrap/bootstrap.min'
 	},
 	shim: {
 		underscore: {
@@ -16,7 +17,8 @@ require.config({
 		'backbone.localStorage': {
 		  deps: ['backbone'],
 		  exports: 'Backbone'
-		}
+		},
+		 "bootstrap": ['jquery']
 	}
 });
 require([

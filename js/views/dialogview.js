@@ -1,4 +1,4 @@
-define(['jquery', 'backbone','collections/tasks', 'models/task', 'views/taskview'], function($, Backbone, Tasks, Task, TaskView){
+define(['jquery', 'bootstrap', 'backbone','collections/tasks', 'models/task', 'views/taskview'], function($, Bootstrap, Backbone, Tasks, Task, TaskView){
 
     
     var dialogView = Backbone.View.extend({
@@ -19,6 +19,7 @@ define(['jquery', 'backbone','collections/tasks', 'models/task', 'views/taskview
 		events:{
 			'click #add-task' : 'showDialog',
 			'click #dialog-close' : 'closeDialog',
+			'click #modal-close' : 'closeDialog',
 			'click #add-task-button' : 'addTask'
 		},
 		addTask: function(){
@@ -33,7 +34,8 @@ define(['jquery', 'backbone','collections/tasks', 'models/task', 'views/taskview
 			}
 		},
 		showDialog: function () {
-			$("#dialog,#fade").show();
+			//$("#dialog,#fade").show();
+			$("#modal1").modal('show');
 			$('#add-task-text').on('keydown',function(){
 				$('textarea').css('border','none');
 			});
@@ -47,7 +49,8 @@ define(['jquery', 'backbone','collections/tasks', 'models/task', 'views/taskview
 			});
 		},
 		closeDialog: function () {
-			$("#dialog,#fade").hide();
+			//$("#dialog,#fade").hide();
+			$("#modal1").modal('hide');
 			this.removeTextareaBorder();
 			this.cleanTextarea();
 		},

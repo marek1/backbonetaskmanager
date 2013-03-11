@@ -3,30 +3,37 @@
 	<head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width" />
+	<link rel="stylesheet/less" type="text/css" href="css/bootstrap.css">
 	<link rel="stylesheet/less" type="text/css" href="less/main.less">
 	<title>Task-Manager</title>
 	</head>
     <body>
-	<div id="fade">
-	<div id="dialog">
-			<div id="dialog-close"><img src="img/close.png" class="icon"></div>
-			<form id="addTask" action="#">
-					<textarea id="add-task-text" class="expandable-textarea" rows="2"></textarea>
-					<br/>
-					<select id="add-task-prio" name="edit-task-prio">
-					<option value="1" style="background-color:green;"><span style="background-color:green;">green</span></option>
-					<option value="2" style="background-color:yellow;"><span style="background-color:yellow;">yellow</span></option>
-					<option value="3" style="background-color:red;"><span style="background-color:red;">red</span></option>
-					</select>
-					<input type="button" id="add-task-button" class="button" value="add" />
-			</form>
-	</div>
+	<div id="modal1" class="modal hide fade">
+			<div class="modal-header">
+			  <button type="button" id="dialog-close" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			  <h3>Add Task</h3>
+			</div>
+			<div class="modal-body">
+				<form id="addTask" action="#">
+						<textarea id="add-task-text" class="expandable-textarea" rows="2"></textarea>
+						<br/>
+						<select id="add-task-prio" name="edit-task-prio">
+						<option value="1" style="background-color:green;"><span style="background-color:green;">green</span></option>
+						<option value="2" style="background-color:yellow;"><span style="background-color:yellow;">yellow</span></option>
+						<option value="3" style="background-color:red;"><span style="background-color:red;">red</span></option>
+						</select>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button id="add-task-button" class="btn btn-primary">Add</button>
+				<button id="modal-close" class="btn btn-link">Cancel</a>
+			</div>
 	</div>
 	<section>
 			<span id="search">
 				Search by
-				<input type="text" id="search-task-text" value="">
-				<input type='button' id='search-task-button' class='button' value='Search' />
+				<input type="text" id="search-task-text" class="input-medium search-query" value="">
+				<input type='button' id='search-task-button' class='button btn btn-primary' value='Search' />
 			</span>
 			<span id="filter">
 				Filter by
@@ -50,8 +57,8 @@
 	</section>
 	
 	<script type="text/template" id="task_template">
-		<button class="edit right">edit</button>
-		<button class="delete right">del</button>
+		<button class="edit right btn"><i class="icon-pencil"></i></button>
+		<button class="delete right  btn"><i class="icon-trash"></i></button>
 		<div class="div-header"><%= title %></div>
 	</script>
 	
@@ -74,8 +81,9 @@
 			<option value="3" style="background-color:red;"><span style="background-color:red;">red</span></option>
 			<% } %>
 		</select>
-		<input type='button' id='edit-task-button' class='button' value='submit' />
-		<span class='cancel_button'>cancel</span>
+		<br/>
+		<button id='edit-task-button' class='btn btn-primary'>Submit</button>
+		<span class='cancel_button'>Cancel</span>
 	</script>
 	
 	<script type="text/javascript" src="js/libs/less/less-1.3.0.min.js"></script>

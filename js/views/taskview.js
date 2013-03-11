@@ -52,7 +52,6 @@ define(['jquery','backbone'], function($, Backbone){
 		},
 			
 		editEntry: function(){
-				
 			var variables = { "title" : this.model.get('title'), "prio": this.model.get('prio') };
 			var template = _.template( $("#task_edit_template").html(), variables );
 			$(this.el).html(template);
