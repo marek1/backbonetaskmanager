@@ -8,7 +8,6 @@ define(['jquery', 'freetile', 'backbone','collections/tasks', 'models/task', 'vi
 			this.collection = new Tasks();
 			this.collection.fetch();
 			this.render();
-            //this.on("change:filterType", this.filterByType, this);
 		},
 		render: function () {
 			$("#container").html('');
@@ -23,7 +22,6 @@ define(['jquery', 'freetile', 'backbone','collections/tasks', 'models/task', 'vi
                 model: item
             });
             $("#container").append(this.TaskView.render().el);
-			this.freetile();
         },
         events: {
             "change #filtertype": "setFilter",
@@ -51,7 +49,6 @@ define(['jquery', 'freetile', 'backbone','collections/tasks', 'models/task', 'vi
 			this.collection.fetch();
 			var pattern = new RegExp(searchText,"gi");
 			var filtered = _.filter(this.collection.models, function (item) {
-				//return item.get("title") == searchText;
 				return pattern.test(item.get("title"));
 			});
 			this.collection.reset(filtered,{ silent: true });
