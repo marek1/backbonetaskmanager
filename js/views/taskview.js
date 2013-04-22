@@ -43,6 +43,8 @@ define(['jquery','backbone'], function($, Backbone){
             //remove view from page
             this.remove();
 
+			//freetile tiles
+			this.freetile();
         },
         
         showEntry: function(){
@@ -58,7 +60,8 @@ define(['jquery','backbone'], function($, Backbone){
 			var variables = { "title" : this.model.get('title'), "prio": this.model.get('prio') };
 			var template = _.template( $("#task_edit_template").html(), variables );
 			$(this.el).html(template);
-			this.freetile();
+			//this.freetile();
+			this.enlargeTextarea();
 		},
 		
 		submitEditEntry: function(){
@@ -73,16 +76,10 @@ define(['jquery','backbone'], function($, Backbone){
 		},
 		
 		enlargeTextarea: function(){
-			$('#edit-task-text').bind('input keyup change', function() {
-				var $this = $(this), $offset = this.offsetHeight;
-				console.log($this);
-				$offset > $this.height() ?
-				$this.css('height ', $offset)
-					.attr('rows', $this.val().split('\n').length+1)
-					.css({'height' : $this.attr('scrollHeight'),'overflow' : 'hidden'}) :
-				$this.css('overflow','auto');
-				$(this).closest('div').css('height', $offset+80+"px");
-				this.freetile();
+			var that = this;
+			$('textarea').on('keyup mouseenter ', function(event) {
+				$(this).attr('rows', $(this).val().split('\n').length+1);
+				that.freetile();
 			});
 		},
 		

@@ -40,12 +40,7 @@ define(['jquery', 'freetile', 'bootstrap', 'backbone','collections/tasks', 'mode
 				$('textarea').css('border','none');
 			});
 			$('#add-task-text').on('keyup change', function() {
-				var $this = $(this), $offset = this.offsetHeight;
-				$offset > $this.height() ?
-					$this.css('height ', $offset)
-						.attr('rows', $this.val().split('\n').length+1)
-						.css({'height' : $this.attr('scrollHeight'),'overflow' : 'hidden'}) :
-					$this.css('overflow','auto');
+				$(this).attr('rows', $(this).val().split('\n').length+1);
 			});
 		},
 		closeDialog: function () {
