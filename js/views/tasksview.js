@@ -25,7 +25,7 @@ define(['jquery', 'freetile', 'backbone','collections/tasks', 'models/task', 'vi
         },
         events: {
             "change #filtertype": "setFilter",
-            "click #search-task-button" : "searchTasks"
+            "keyup #search-task-text": "searchTasks"
 		},
 		setFilter: function(e){
 			var filterType = e.currentTarget.value;
@@ -34,7 +34,6 @@ define(['jquery', 'freetile', 'backbone','collections/tasks', 'models/task', 'vi
 				var filtered = _.filter(this.collection.models, function (item) {
 				return item.get("prio") != "0";
 				});
-				console.log(filterType);
 			} else {
 				var filtered = _.filter(this.collection.models, function (item) {
 				return item.get("prio") == filterType;
@@ -44,8 +43,7 @@ define(['jquery', 'freetile', 'backbone','collections/tasks', 'models/task', 'vi
 			this.render();
         },
         searchTasks: function(){
-			var searchText = $('#search-task-text').val();
-			$('#search-task-text').val('');
+        	var searchText = $('#search-task-text').val();
 			this.collection.fetch();
 			var pattern = new RegExp(searchText,"gi");
 			var filtered = _.filter(this.collection.models, function (item) {

@@ -30,12 +30,27 @@ section{
 	padding:1%;
 	min-height:50px;
 }
+.modal{
+  margin-left:auto;
+  left:0;
+  width:98%;
+  margin:1%;
+
+
+}
 .filters{
 	margin-bottom:10px;
 }
-#add-task-text,
-#edit-task-text{
-	width:95%;
+.label1{
+  width:100px;
+}
+textarea{
+  width:95%;
+  margin : 0 @margin @margin 0;
+  padding : @padding;
+}
+select{
+  width:auto;
 }
 .show-task,
 #add-task{
@@ -64,7 +79,7 @@ background-color: @red;
 }
 #add-task{
 	text-align:center;
-	font-size:@hugefont;
+	font-size:@bigfont;
 	background-color: @grey;
 }
 .open{
